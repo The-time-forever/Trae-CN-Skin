@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "name": "CLANNAD School Festival Light",
+  "mode": "light",
+  "image": "background.webp",
+  "focusX": 50, "focusY": 30, "imageWidth": 100,
+  "intensity": 32, "taskIntensity": 28,
+  "surfaceOpacity": 82, "blur": 10, "radius": 14,
+  "ideSurfaceOpacity": 78, "ideBlur": 4,
+  "accent": "#e07050", "text": "#3a2a20", "muted": "#6e6478",
+  "background": "#f7f1e6", "surface": "#fbf7ee"
+}

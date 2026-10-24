@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "name": "Yuki Dark",
+  "mode": "dark",
+  "image": "background.jpg",
+  "focusX": 50, "focusY": 30, "imageWidth": 56,
+  "intensity": 40, "taskIntensity": 16,
+  "surfaceOpacity": 64, "blur": 14, "radius": 10,
+  "ideSurfaceOpacity": 42, "ideBlur": 6,
+  "accent": "#c3d0d9", "text": "#eef1f3", "muted": "#a2a9b0",
+  "background": "#0e1012", "surface": "#1b1e21"
+}

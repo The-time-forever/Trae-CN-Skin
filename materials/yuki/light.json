@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "name": "Yuki Light",
+  "mode": "light",
+  "image": "background.jpg",
+  "focusX": 50, "focusY": 26, "imageWidth": 58,
+  "intensity": 24, "taskIntensity": 10,
+  "surfaceOpacity": 76, "blur": 14, "radius": 10,
+  "ideSurfaceOpacity": 46, "ideBlur": 6,
+  "accent": "#4b6577", "text": "#1d2023", "muted": "#5d646b",
+  "background": "#eceeef", "surface": "#f7f8f8"
+}

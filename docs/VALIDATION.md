@@ -2,6 +2,16 @@
 
 Target: local TRAE CN 1.107.1 (Electron 39.2.7 / Chrome 142), `D:\SoftWare\Trae CN\Trae CN.exe`, Agent workbench `solo-lite.html` and IDE window `workbench.html` (IDE and SOLO layouts).
 
+## Relay redesign (2026-10-24, offline)
+
+The active material is now `materials/relay/` (`background.png`, `Relay Light`, `Relay Dark`); the previous SUBARU files remain in `materials/subaru/`.
+
+- [x] `node skin.mjs list`: `dark.json` (Relay Dark) and `light.json` (Relay Light) both validate and reference `background.png`.
+- [x] `accentAlt` falls back to `accent` for configs without it and is checked as `#rrggbb`.
+- [x] `node --test`: offline material and controller checks pass.
+- [x] `node --check` on every JavaScript file.
+- [ ] Live apply in Agent, IDE and SOLO layouts: hairline, top-right bracket, accent glass borders and scrollbar; run `node skin.mjs check` for light blocks and low-contrast text in both modes.
+
 ## Active material layout (2026-10-16, offline)
 
 - [x] `node --test`: 11 regression checks passed using temporary material fixtures and in-memory controller sessions; no TRAE process or CDP connection was used.

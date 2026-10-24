@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "name": "Firefly Dark",
+  "mode": "dark",
+  "image": "background.jpg",
+  "focusX": 68, "focusY": 44, "imageWidth": 56,
+  "intensity": 34, "taskIntensity": 13,
+  "surfaceOpacity": 70, "blur": 14, "radius": 14,
+  "ideSurfaceOpacity": 46, "ideBlur": 4,
+  "accent": "#8ef0c4", "text": "#e8f6f3", "muted": "#9db1b3",
+  "background": "#0b1216", "surface": "#17242a"
+}

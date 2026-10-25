@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "name": "SUBARU Dark",
   "mode": "dark",
-  "image": "background.jpg",
-  "focusX": 76, "focusY": 42, "imageWidth": 52,
-  "intensity": 36, "taskIntensity": 15,
-  "surfaceOpacity": 68, "blur": 12, "radius": 14,
-  "ideSurfaceOpacity": 48, "ideBlur": 4,
-  "accent": "#c8d7df", "text": "#eceff1", "muted": "#a5aab2",
-  "background": "#141518", "surface": "#23252a"
+  "image": "background.png",
+  "focusX": 88, "focusY": 38, "imageWidth": 56,
+  "intensity": 75, "taskIntensity": 42,
+  "surfaceOpacity": 48, "blur": 12, "radius": 14,
+  "ideSurfaceOpacity": 34, "ideBlur": 4,
+  "accent": "#d9a463", "text": "#e9e6e0", "muted": "#a49f97",
+  "background": "#131417", "surface": "#1f2024"
 }

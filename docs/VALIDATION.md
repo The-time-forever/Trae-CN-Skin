@@ -2,14 +2,15 @@
 
 Target: local TRAE CN 1.107.1 (Electron 39.2.7 / Chrome 142), `D:\SoftWare\Trae CN\Trae CN.exe`, Agent workbench `solo-lite.html` and IDE window `workbench.html` (IDE and SOLO layouts).
 
-## Light-mode link and success contrast (2026-10-31, offline)
+## Light-mode link and success contrast (2026-10-31, live via CDP)
 
-- [x] Native values read from `resources/app/out/vs/workbench/workbench.desktop.main.js`: `textLink.foreground` `#006AB1` light / `#3794FF` dark, `icube.colorSuccess` `#00AA62` light / `#26A57B` dark.
-- [x] Contrast math against SUBARU-Light's opaque background `#e8e9e7` reproduces the two recorded flags: `#00AA62` 2.49 and `#3794FF` 2.52 (recorded 2.50 and 2.87 with the translucent surface sampled differently).
-- [x] New mappings in `inject.js`: links use 65% `accent` into `text` (`#404f5a`, 6.94:1 on `background`, 7.81:1 on `surface`); light skins use 60% native green into `text` (`#0f764c`, 4.64:1 and 5.22:1). A `success` override still wins.
+- [x] Reproduced live with `node skin.mjs check`: `.markdown-file-link` (`start.bat`) reports 2.87. The element reads `--accent-accent-blue`, hardcoded as `#3f85ff` in solo-lite's light theme, and `#3f85ff` on SUBARU-Light's `#e8e9e7` measures 2.87, an exact match. VS Code's `textLink.foreground` (`#006AB1` light, 4.67:1) is not involved and stays native.
+- [x] Success side: native `icube.colorSuccess` `#00AA62` on `#e8e9e7` measures 2.49, matching the recorded 2.50.
+- [x] Fix in `inject.js`: light skins map `--accent-accent-blue` to 65% `accent` mixed into `text` (`#404f5a`, 6.94:1 on `background`, 7.81:1 on `surface`) inside the shared `tokenScope` (solo-lite redeclares it on `body`, so an `html`-only rule is overridden), and `--vscode-icube-colorSuccess` to 60% native green into `text` (`#0f764c`, 4.64:1 and 5.22:1). An explicit `success` override still wins.
+- [x] Live re-check after `apply` with the links in view: `skin=light match=full`, revision `63e669b2`, 0 light blocks and 0 low contrast; the link measures 6.94:1 on `#e8e9e7`.
 - [x] Dark mode is untouched: native `#26A57B` on `#23252a` is 4.97:1 and `#3794FF` is 5.00:1, so the new rules only apply to light skins.
 - [x] `node --test` and `node skin.mjs list` pass; all JavaScript files pass `node --check`.
-- [ ] Live `node skin.mjs check` in light mode: not possible during this change. TRAE CN was already running without the debug port, and an isolated second instance exited through the single-instance lock.
+- [ ] IDE window: not covered live, because only the Agent target was open. The `textLink` token is left native there and already passes on light surfaces.
 
 ## Active material layout (2026-10-16, offline)
 

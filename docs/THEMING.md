@@ -57,7 +57,7 @@ Optional `#rrggbb` overrides preserve existing mappings and native Git colors wh
 | `onAccent` | On-accent text and icons; check contrast against each background that uses it |
 | `invertBackground` | Inverted panel background and its hover and active variants |
 | `gitUntracked`, `gitIgnored`, `gitModified`, `gitDeleted` | IDE Git decoration colors |
-| `success` | IDE success color |
+| `success` | Success color in the IDE and the Agent chat; light skins mix the native green toward `text` when it is omitted |
 
 Keep at least 4.5:1 contrast between `text` and both `surface` and `background`.
 

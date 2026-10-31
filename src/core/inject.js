@@ -17,6 +17,10 @@ export function installTheme(theme, image, contract, revision) {
   const overlaySurface = `color-mix(in srgb, ${theme.surface} ${overlayOpacity}%, transparent)`;
   const fade = (color, pct) => `color-mix(in srgb,${color} ${pct}%,transparent)`;
   const tint = pct => fade(`color-mix(in srgb,${theme.text} ${pct}%,${theme.surface})`, theme.surfaceOpacity);
+  // TRAE's light-mode link (#3794FF) and success (#00AA62) colors are tuned for its own white surfaces and drop to
+  // 2.5:1 on a light skin; mix them toward the skin text so markdown links and diff counts stay readable.
+  const link = `color-mix(in srgb,${theme.accent} 65%,${theme.text})`;
+  const success = theme.success ?? `color-mix(in srgb, #00aa62 60%,${theme.text})`;
   // solo-lite redeclares hardcoded tokens on html[data-theme], body.vs.solo-lite and .solo-theme[data-theme]; override at each scope.
   const tokenScope = 'html[data-tws-mode], html[data-tws-mode] body, html[data-tws-mode] .solo-theme, html[data-tws-mode] [data-theme]';
   style.textContent = `
@@ -31,6 +35,8 @@ export function installTheme(theme, image, contract, revision) {
       --vscode-icube--border-border-neutral-l1:color-mix(in srgb,${theme.text} 10%,transparent)!important; --vscode-icube--border-border-neutral-l2:color-mix(in srgb,${theme.text} 16%,transparent)!important; --vscode-icube--border-border-neutral-l3:color-mix(in srgb,${theme.text} 22%,transparent)!important;
       --vscode-icube--icon-icon-disabled:color-mix(in srgb,${theme.muted} 58%,transparent)!important; --vscode-icube--icon-icon-onaccent:${theme.onAccent ?? theme.background}!important; --vscode-icube--icon-icon-secondary-hover:${theme.text}!important; --vscode-icube--text-text-brand:${theme.brandText ?? theme.accent}!important; --vscode-icube--text-text-disabled:color-mix(in srgb,${theme.muted} 58%,transparent)!important; --vscode-icube--text-text-onaccent:${theme.onAccent ?? theme.background}!important; --vscode-icube--text-text-tertiary:${theme.muted}!important;
       --vscode-icube-colorBgTr1:color-mix(in srgb,${theme.text} 7%,transparent)!important; --vscode-icube-colorBgTr2:color-mix(in srgb,${theme.text} 11%,transparent)!important; --vscode-icube-colorBlackText1:${theme.text}!important; --vscode-icube-colorHighlightText:${theme.brandText ?? theme.accent}!important; --vscode-icube-colorTextHighlight:${theme.accent}!important; --vscode-icube-emptyExplorerButtonTextColor:${theme.text}!important; --vscode-icube-agentReviewSummaryBg:${surface}!important; --vscode-icube-qualityBackgroundColor:${surface}!important; --vscode-icube-qualityForeground:${theme.text}!important; --icube-statusBar-background:${surface}!important; --icube-statusBar-color:${theme.text}!important;
+      ${theme.mode === 'light' ? `--vscode-textLink-foreground:${link}!important; --vscode-textLink-activeForeground:${link}!important;` : ''}
+      ${theme.success || theme.mode === 'light' ? `--vscode-icube-colorSuccess:${success}!important;` : ''}
       --vscode-icube-box-shadow1:0 4px 12px #0005!important; --vscode-icube-box-shadow2:0 8px 24px #0007!important; --vscode-icube-box-shadow3:0 14px 38px #0009!important; --vscode-icube-elevation-100-tooltip:0 4px 12px #0006!important; --vscode-icube-elevation-200-menu-panel:0 8px 24px #0008!important; --vscode-icube-elevation-300-modal-panel:0 14px 38px #0009!important;
     }
     ${tokenScope} {
@@ -83,7 +89,6 @@ export function installTheme(theme, image, contract, revision) {
       ${theme.gitIgnored ? `--vscode-gitDecoration-ignoredResourceForeground:${theme.gitIgnored}!important;` : ''}
       ${theme.gitModified ? `--vscode-gitDecoration-modifiedResourceForeground:${theme.gitModified}!important;` : ''}
       ${theme.gitDeleted ? `--vscode-gitDecoration-deletedResourceForeground:${theme.gitDeleted}!important;` : ''}
-      ${theme.success ? `--vscode-icube-colorSuccess:${theme.success}!important;` : ''}
       --vscode-icube-colorSnow:${tint(10)}!important; --vscode-icube-colorBlack:${theme.text}!important;
     }
     ${clear} { background-color:transparent!important; }

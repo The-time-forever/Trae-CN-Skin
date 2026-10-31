@@ -1,13 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "Relay Dark",
+  "name": "SUBARU Dark",
   "mode": "dark",
-  "image": "background.png",
-  "focusX": 50, "focusY": 44, "imageWidth": 80,
-  "intensity": 60, "taskIntensity": 33,
-  "surfaceOpacity": 64, "blur": 16, "radius": 18,
-  "ideSurfaceOpacity": 44, "ideBlur": 6,
-  "accent": "#9db8ff", "accentAlt": "#f0a6d6",
-  "text": "#e9eefb", "muted": "#9dabc4",
-  "background": "#0b101d", "surface": "#151d2f"
+  "image": "background.jpg",
+  "focusX": 76, "focusY": 42, "imageWidth": 52,
+  "intensity": 36, "taskIntensity": 15,
+  "surfaceOpacity": 68, "blur": 12, "radius": 14,
+  "ideSurfaceOpacity": 48, "ideBlur": 4,
+  "accent": "#c8d7df", "text": "#eceff1", "muted": "#a5aab2",
+  "background": "#141518", "surface": "#23252a"
 }

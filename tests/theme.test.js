@@ -50,7 +50,6 @@ test('one image supports two configs; mode is independent of file name', async t
   assert.deepEqual(a.bytes, png);
   assert.equal(a.dataUrl, b.dataUrl);
   assert.equal(a.theme.ideSurfaceOpacity, a.theme.surfaceOpacity);
-  assert.equal(a.theme.accentAlt, a.theme.accent);
 });
 
 test('nested material folders are ignored and one mode is supported', async t => {
@@ -84,8 +83,6 @@ test('mode is required; malformed JSON and invalid values fail with file context
   await assert.rejects(listThemes({ root }), /custom.json: blur must be between/);
   await write('custom.json', 'dark', { text: 'white' });
   await assert.rejects(listThemes({ root }), /custom.json: text must be #rrggbb/);
-  await write('custom.json', 'dark', { accentAlt: 'pink' });
-  await assert.rejects(listThemes({ root }), /custom.json: accentAlt must be #rrggbb/);
   await fs.writeFile(path.join(root, 'custom.json'), '{');
   await assert.rejects(listThemes({ root }), /Cannot read themes\/custom.json/);
 });

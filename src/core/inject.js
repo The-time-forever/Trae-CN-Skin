@@ -17,13 +17,6 @@ export function installTheme(theme, image, contract, revision) {
   const overlaySurface = `color-mix(in srgb, ${theme.surface} ${overlayOpacity}%, transparent)`;
   const fade = (color, pct) => `color-mix(in srgb,${color} ${pct}%,transparent)`;
   const tint = pct => fade(`color-mix(in srgb,${theme.text} ${pct}%,${theme.surface})`, theme.surfaceOpacity);
-  // Design language taken from the reference art: a pale luminous field, iridescent cyan-to-pink hairlines,
-  // corner brackets and glass panels outlined with the accent instead of plain gray.
-  const alt = theme.accentAlt || theme.accent;
-  const bracket = fade(theme.accent, 44);
-  const hairline = `linear-gradient(90deg,transparent 0 7%,${fade(theme.accent,62)} 30%,${fade(alt,66)} 58%,transparent 93%)`;
-  const edge = `1px solid ${fade(theme.accent,34)}`;
-  const glow = `0 0 16px ${fade(theme.accent,26)}`;
   // solo-lite redeclares hardcoded tokens on html[data-theme], body.vs.solo-lite and .solo-theme[data-theme]; override at each scope.
   const tokenScope = 'html[data-tws-mode], html[data-tws-mode] body, html[data-tws-mode] .solo-theme, html[data-tws-mode] [data-theme]';
   style.textContent = `
@@ -59,14 +52,12 @@ export function installTheme(theme, image, contract, revision) {
       --color-border-1:${fade(theme.text,8)}!important; --color-border-2:${fade(theme.text,12)}!important; --color-border-3:${fade(theme.text,18)}!important; --color-border-4:${fade(theme.text,24)}!important;
     }
     html[data-tws-mode] body { background:${theme.background}!important; color:${theme.text}!important; isolation:isolate; }
-    html[data-tws-mode] ::selection { background:${fade(theme.accent,34)}; color:${theme.text}; }
-    #trae-snow-ink-background { position:fixed; inset:0; pointer-events:none; z-index:-1; background-color:${theme.background}; background-image:linear-gradient(to right,${bracket},${bracket}),linear-gradient(to bottom,${bracket},${bracket}); background-size:34px 1px,1px 18px; background-position:right 26px top 24px,right 26px top 24px; background-repeat:no-repeat; }
+    #trae-snow-ink-background { position:fixed; inset:0; pointer-events:none; z-index:-1; background-color:${theme.background}; }
     #trae-snow-ink-background::before { content:''; position:absolute; inset:0 0 0 auto; width:${theme.imageWidth}%; background-image:linear-gradient(to right,${theme.background},transparent 35%),url("${image}"); background-position:center,${theme.focusX}% ${theme.focusY}%; background-size:cover; opacity:${theme.taskIntensity/100}; }
     #trae-snow-ink-background[data-home]::before { opacity:${theme.intensity/100}; }
-    #trae-snow-ink-background::after { content:''; position:absolute; left:0; right:0; bottom:0; height:1px; background:${hairline}; box-shadow:${glow}; }
     .context-view, .monaco-menu-container, .monaco-select-box-dropdown-container, .quick-input-widget { background:transparent!important; border-color:transparent!important; box-shadow:none!important; outline:none!important; color:${theme.text}!important; }
     .context-view *, .monaco-menu-container *, .monaco-select-box-dropdown-container *, .quick-input-widget * { color:${theme.text}!important; }
-    .context-view .monaco-menu, .context-view .monaco-list, .monaco-menu-container .monaco-menu, .monaco-menu-container .monaco-list, .monaco-select-box-dropdown-container .monaco-list, .quick-input-widget { background:${theme.surface}!important; border:${edge}!important; border-radius:${theme.radius}px!important; box-shadow:0 12px 32px #0009!important; backdrop-filter:blur(${theme.blur}px); color-scheme:${theme.mode}; }
+    .context-view .monaco-menu, .context-view .monaco-list, .monaco-menu-container .monaco-menu, .monaco-menu-container .monaco-list, .monaco-select-box-dropdown-container .monaco-list, .quick-input-widget { background:${theme.surface}!important; border:1px solid color-mix(in srgb,${theme.text} 16%,transparent)!important; border-radius:${theme.radius}px!important; box-shadow:0 12px 32px #0009!important; backdrop-filter:blur(${theme.blur}px); color-scheme:${theme.mode}; }
     .context-view .monaco-scrollable-element, .monaco-menu-container .monaco-scrollable-element, .monaco-select-box-dropdown-container .monaco-scrollable-element { background:transparent!important; }
     ${contract.surface === 'ide' ? ideRules() : agentRules()}
   `;
@@ -81,8 +72,8 @@ export function installTheme(theme, image, contract, revision) {
       --vscode-editor-background:transparent!important; --vscode-editorGutter-background:transparent!important; --vscode-editorGroup-emptyBackground:transparent!important; --vscode-editorGroupHeader-tabsBackground:${surface}!important; --vscode-editorGroupHeader-noTabsBackground:${surface}!important;
       --vscode-tab-activeBackground:${tint(6)}!important; --vscode-tab-inactiveBackground:transparent!important; --vscode-tab-activeForeground:${theme.text}!important; --vscode-tab-inactiveForeground:${theme.muted}!important; --vscode-tab-border:transparent!important;
       --vscode-sideBar-background:${pane}!important; --vscode-sideBarSectionHeader-background:transparent!important; --vscode-sideBar-foreground:${theme.text}!important; --vscode-sideBarTitle-foreground:${theme.text}!important;
-      --vscode-panel-background:${pane}!important; --vscode-panel-border:${fade(theme.accent,30)}!important; --vscode-terminal-background:transparent!important;
-      --vscode-activityBar-background:transparent!important; --vscode-activityBar-foreground:${theme.text}!important; --vscode-activityBar-inactiveForeground:${theme.muted}!important; --vscode-activityBar-activeBorder:${theme.accent}!important; --vscode-tab-activeBorderTop:${theme.accent}!important;
+      --vscode-panel-background:${pane}!important; --vscode-panel-border:${fade(theme.text,12)}!important; --vscode-terminal-background:transparent!important;
+      --vscode-activityBar-background:transparent!important; --vscode-activityBar-foreground:${theme.text}!important; --vscode-activityBar-inactiveForeground:${theme.muted}!important;
       --vscode-titleBar-activeBackground:${surface}!important; --vscode-titleBar-inactiveBackground:${surface}!important; --vscode-titleBar-activeForeground:${theme.text}!important; --vscode-titleBar-inactiveForeground:${theme.muted}!important;
       --vscode-statusBar-background:transparent!important; --vscode-statusBar-foreground:${theme.muted}!important; --vscode-statusBar-noFolderBackground:transparent!important;
       --vscode-list-hoverBackground:${fade(theme.text,8)}!important; --vscode-list-activeSelectionBackground:${fade(theme.accent,26)}!important; --vscode-list-inactiveSelectionBackground:${fade(theme.text,10)}!important; --vscode-list-activeSelectionForeground:${theme.text}!important;
@@ -94,7 +85,7 @@ export function installTheme(theme, image, contract, revision) {
     .monaco-workbench .part.sidebar, .monaco-workbench .part.auxiliarybar, .monaco-workbench .part.panel, .monaco-workbench .part.soloaisidebar { background-color:${pane}!important; backdrop-filter:${theme.ideBlur ? `blur(${theme.ideBlur}px)` : 'none'}; }
     .monaco-workbench .part.sidebar .composite, .monaco-workbench .part.sidebar .pane-composite-part > .content, .monaco-workbench .part.sidebar .split-view-view > .pane, .monaco-workbench .part.sidebar .pane-body, .monaco-workbench .part.sidebar .monaco-list, .monaco-workbench .part.sidebar .monaco-list-rows, .monaco-workbench .part.auxiliarybar .composite, .monaco-workbench .part.soloaisidebar .content { background-color:transparent!important; }
     .monaco-workbench .part.editor .title.tabs, .monaco-workbench .part.editor .tabs-container, .monaco-workbench .part.editor .editor-actions { background-color:${surface}!important; }
-    .monaco-workbench .messageInputContainer { background-color:${surface}!important; border:${edge}!important; border-radius:${theme.radius}px!important; }
+    .monaco-workbench .messageInputContainer { background-color:${surface}!important; border-radius:${theme.radius}px!important; }
     .monaco-workbench .part.titlebar, .monaco-workbench .part.statusbar, .monaco-workbench .part.activitybar { background-color:transparent!important; }
     /* SOLO wraps the tool area in a grid node painted with --bg-bg-base-default; it would stack under the pane surface. */
     .monaco-workbench.solo-mode .monaco-grid-branch-node.aichatview-marked, .solo-mode .monaco-grid-branch-node.aichatview-marked { background-color:transparent!important; }
@@ -108,8 +99,8 @@ export function installTheme(theme, image, contract, revision) {
     .chat-input-v2-container, .chat-input-v2-input-box-wrapper, .chat-input-v2-editor-part { background:transparent!important; color:${theme.text}!important; opacity:1!important; }
     .chat-input-v2-editor-part * { color:${theme.text}!important; }
     .chat-input-v2-editor-part [class*="placeholder"], .chat-input-v2-editor-part [data-placeholder] { color:${theme.muted}!important; }
-    [data-tws-part="sidebar"]:not([data-tws-part="sidebar"] *), [data-tws-part="composer"] { background:${surface}!important; background-image:none!important; color:${theme.text}!important; border:${edge}!important; }
-    [data-tws-part="dialog"] { background:${overlaySurface}!important; background-image:none!important; color:${theme.text}!important; border:${edge}!important; }
+    [data-tws-part="sidebar"]:not([data-tws-part="sidebar"] *), [data-tws-part="composer"] { background:${surface}!important; background-image:none!important; color:${theme.text}!important; border:1px solid color-mix(in srgb,${theme.text} 16%,transparent)!important; }
+    [data-tws-part="dialog"] { background:${overlaySurface}!important; background-image:none!important; color:${theme.text}!important; border:1px solid color-mix(in srgb,${theme.text} 16%,transparent)!important; }
     [data-tws-part="sidebar"] .task-list-heading, [data-tws-part="sidebar"] .task-list-group-header-wrapper { color:${theme.muted}!important; }
     [data-tws-part="home"] [class*="description"], [data-tws-part="home"] [class*="subtitle"] { color:${theme.muted}!important; }
     [data-tws-part="dialog"] { box-shadow:0 12px 32px #0009!important; color-scheme:${theme.mode}; }
@@ -122,12 +113,12 @@ export function installTheme(theme, image, contract, revision) {
     [data-tws-part="composer"] .chat-input-v2-editor-part [class*="placeholder"], [data-tws-part="composer"] .chat-input-v2-editor-part [data-placeholder] { color:${theme.muted}!important; }
     [data-tws-part="composer"] button, [data-tws-part="composer"] [role="button"] { color:${theme.muted}!important; opacity:1!important; }
     [data-tws-part="composer"] button svg, [data-tws-part="composer"] [role="button"] svg { color:inherit!important; opacity:1!important; }
-    [data-tws-part="home"] button:not([data-tws-part="composer"] button) { color:${theme.text}!important; background:${surface}!important; border:${edge}!important; box-shadow:none!important; }
+    [data-tws-part="home"] button:not([data-tws-part="composer"] button) { color:${theme.text}!important; background:${surface}!important; border:1px solid color-mix(in srgb,${theme.text} 18%,transparent)!important; box-shadow:none!important; }
     [data-tws-part="home"] button:not([data-tws-part="composer"] button):hover { background:color-mix(in srgb,${theme.surface} 92%,${theme.accent})!important; }
     [data-tws-part="sidebar"] ::-webkit-scrollbar-track, [data-tws-part="sidebar"] ::-webkit-scrollbar-corner { background:transparent!important; }
-    [data-tws-part="sidebar"] ::-webkit-scrollbar-thumb { background:${fade(theme.accent,38)}!important; border:2px solid transparent!important; background-clip:padding-box!important; border-radius:8px!important; }
+    [data-tws-part="sidebar"] ::-webkit-scrollbar-thumb { background:color-mix(in srgb,${theme.muted} 24%,transparent)!important; border:2px solid transparent!important; background-clip:padding-box!important; border-radius:8px!important; }
     [data-tws-part="composer"], [data-tws-part="dialog"] { border-radius:${theme.radius}px!important; backdrop-filter:blur(${theme.blur}px); }
-    [data-tws-part="composer"] { box-shadow:0 12px 35px #00000020,${glow}; }
+    [data-tws-part="composer"] { box-shadow:0 12px 35px #00000020; }
     @media (prefers-reduced-transparency:reduce) { [data-tws-part] { backdrop-filter:none!important; } [data-tws-part="composer"], [data-tws-part="dialog"] { background:${theme.surface}!important; } }
     `;
   }

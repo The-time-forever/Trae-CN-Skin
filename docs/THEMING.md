@@ -48,7 +48,6 @@ Unknown fields are dropped. Out-of-range values are rejected, never silently cor
 | `text` | `#rrggbb` | Primary text and icons |
 | `muted` | `#rrggbb` | Secondary text and placeholders |
 | `accent` | `#rrggbb` | Brand color: primary buttons, focus rings, selection |
-| `accentAlt` | `#rrggbb`, optional | Second accent used only for the decorative hairline and bracket marks; defaults to `accent` |
 
 Keep at least 4.5:1 contrast between `text` and both `surface` and `background`.
 
@@ -57,7 +56,7 @@ Keep at least 4.5:1 contrast between `text` and both `surface` and `background`.
 `installTheme(theme, image, contract, revision)` in `inject.js` is serialized and run inside the TRAE page, so it must be self-contained: no references to other module variables and no Node APIs. It creates:
 
 - `#trae-snow-ink-style`: all CSS.
-- `#trae-snow-ink-background`: a `position:fixed; z-index:-1` layer; the image is drawn on its `::before`, and `::after` draws the accent hairline along the window bottom. The layer itself paints a top-right corner bracket. It gets `data-home` on the home page, which switches to `intensity`.
+- `#trae-snow-ink-background`: a `position:fixed; z-index:-1` layer; the image is drawn on its `::before`. It gets `data-home` on the home page, which switches to `intensity`.
 - `html[data-tws-mode]`: every override rule is scoped under this attribute, so removing it reverts everything.
 - A listener on `html[data-theme]`: when TRAE switches to a mode other than `theme.mode`, the style is disabled and the layer hidden immediately; the watcher then swaps in the matching skin or removes the injection.
 - `[data-tws-part="…"]`: part markers placed on TRAE nodes according to `adapter.js`; a MutationObserver re-marks them after DOM changes.

@@ -8,9 +8,10 @@ import test from 'node:test';
 // Run the real entry script in Windows PowerShell 5.1 with local process/CDP stubs.
 // No TRAE process, watcher or network connection is started by these checks.
 async function startup(t, scenario) {
-  const root = await fs.mkdtemp(path.join(os.tmpdir(), 'trae-start-'));
+  const tempDir = await fs.realpath(os.tmpdir());
+  const root = await fs.mkdtemp(path.join(tempDir, 'trae-start-'));
   t.after(async () => {
-    assert.equal(path.dirname(root), path.resolve(os.tmpdir()));
+    assert.equal(path.dirname(root), tempDir);
     assert.ok(path.basename(root).startsWith('trae-start-'));
     await fs.rm(root, { recursive: true, force: true });
   });

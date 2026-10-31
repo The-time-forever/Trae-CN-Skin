@@ -1,4 +1,12 @@
-# TRAE CN Skin
+<h1 align="center">TRAE CN Skin</h1>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/The-time-forever/Trae-CN-Skin" alt="License"></a>
+  <a href="https://github.com/The-time-forever/Trae-CN-Skin/issues"><img src="https://img.shields.io/github/issues/The-time-forever/Trae-CN-Skin" alt="Open issues"></a>
+  <a href="https://github.com/The-time-forever/Trae-CN-Skin/pulls"><img src="https://img.shields.io/github/issues-pr/The-time-forever/Trae-CN-Skin" alt="Open pull requests"></a>
+  <a href="https://github.com/The-time-forever/Trae-CN-Skin/actions/workflows/ci.yml"><img src="https://github.com/The-time-forever/Trae-CN-Skin/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
+  <a href="https://github.com/The-time-forever/Trae-CN-Skin/stargazers"><img src="https://img.shields.io/github/stars/The-time-forever/Trae-CN-Skin?style=social" alt="GitHub stars"></a>
+</p>
 
 Injects a local background image and color scheme into TRAE CN's Agent workbench and IDE window (including SOLO mode) without modifying TRAE's install files or settings. Injection goes through TRAE's debug port (127.0.0.1:9341 only), and the skin follows TRAE's own light/dark mode.
 
@@ -71,6 +79,18 @@ Fields and injection structure are documented in [docs/THEMING.md](docs/THEMING.
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for Bug/Feature Issue templates, material, bug-fix and feature PR templates, source information and validation requirements. You can report problems or request features without submitting code. Documentation and maintenance changes use the default PR template.
+
+## Contributors
+
+<a href="https://github.com/The-time-forever/Trae-CN-Skin/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=The-time-forever/Trae-CN-Skin" alt="Contributors to TRAE CN Skin">
+</a>
+
+## Star history
+
+If you find this project helpful, consider giving it a star.
+
+[![Star history chart](https://api.star-history.com/svg?repos=The-time-forever/Trae-CN-Skin&type=Date)](https://www.star-history.com/#The-time-forever/Trae-CN-Skin&Date)
 
 ## Layout
 

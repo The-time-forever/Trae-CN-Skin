@@ -13,7 +13,9 @@ This project is written independently. It draws on the architecture and TRAE sel
 
 `.research/` holds the repositories fetched during research for reference only. It is git-ignored and not needed at runtime.
 
-`materials/subaru/background.jpg` and its active copy `themes/background.jpg` are the original image supplied by the user. Their bytes are unchanged; the image is only cropped and masked with CSS. It is treated as personal local reference material, and no right to redistribute it publicly is assumed.
+`materials/subaru/background.jpg` is the first image supplied by the user. Its bytes are unchanged; the image is only cropped and masked with CSS. It is treated as personal local reference material, and no right to redistribute it publicly is assumed.
+
+`materials/relay/background.png` is the second image supplied by the user, copied into `themes/background.png` without modification. Only CSS crop, fade and masking are applied. Its author, source and redistribution permission are likewise unestablished, so it is treated as personal local reference material.
 
 Community materials belong in `materials/<name>/`, with one image and dark/light JSON configs referencing that image. Include the image author, original source, redistribution permission or license, and required attribution in a `source.md` file alongside the material. Copy only the image and mode configs into `themes/` when activating it. Review redistribution permission before adding third-party images to public contributions.
 

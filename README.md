@@ -86,7 +86,7 @@ docs/                   architecture, skin guide, sources
 
 ## Scope
 
-Windows only, TRAE CN (China edition) only. Covers the Agent workbench and the IDE window in both IDE and SOLO layouts. Out of scope: the native title bar buttons, terminal text drawn on canvas, extension webviews, and syntax highlighting colors (use a TRAE color theme for those). The bundled SUBARU image in `materials/subaru/` and `themes/` is personal local reference material with no assumed right to redistribute; see [docs/SOURCES.md](docs/SOURCES.md).
+Windows only, TRAE CN (China edition) only. Covers the Agent workbench and the IDE window in both IDE and SOLO layouts. Out of scope: the native title bar buttons, terminal text drawn on canvas, extension webviews, and syntax highlighting colors (use a TRAE color theme for those). The bundled SUBARU and Relay images in `materials/` and the active Relay copy in `themes/` are personal local reference material with no assumed right to redistribute; see [docs/SOURCES.md](docs/SOURCES.md).
 
 ## License
 

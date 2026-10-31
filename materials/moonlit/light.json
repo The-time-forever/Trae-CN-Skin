@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "name": "Moonlit Light",
+  "mode": "light",
+  "image": "background.png",
+  "focusX": 88, "focusY": 38, "imageWidth": 56,
+  "intensity": 80, "taskIntensity": 30,
+  "surfaceOpacity": 62, "blur": 12, "radius": 14,
+  "ideSurfaceOpacity": 38, "ideBlur": 4,
+  "accent": "#4e6473", "text": "#25282c", "muted": "#626873",
+  "background": "#e8e9e7", "surface": "#f6f6f3"
+}

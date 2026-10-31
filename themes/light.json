@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "Firefly Light",
+  "name": "SUBARU Light",
   "mode": "light",
   "image": "background.jpg",
-  "focusX": 68, "focusY": 44, "imageWidth": 56,
-  "intensity": 18, "taskIntensity": 8,
-  "surfaceOpacity": 80, "blur": 12, "radius": 14,
+  "focusX": 76, "focusY": 42, "imageWidth": 52,
+  "intensity": 22, "taskIntensity": 9,
+  "surfaceOpacity": 78, "blur": 12, "radius": 14,
   "ideSurfaceOpacity": 50, "ideBlur": 4,
-  "accent": "#0f7f69", "text": "#17302f", "muted": "#52696a",
-  "background": "#edf7f3", "surface": "#fbfefc"
+  "accent": "#4e6473", "text": "#25282c", "muted": "#626873",
+  "background": "#e8e9e7", "surface": "#f6f6f3"
 }

@@ -2,6 +2,16 @@
 
 Target: local TRAE CN 1.107.1 (Electron 39.2.7 / Chrome 142), `D:\SoftWare\Trae CN\Trae CN.exe`, Agent workbench `solo-lite.html` and IDE window `workbench.html` (IDE and SOLO layouts).
 
+## Light-mode link and success contrast (2026-10-31, live via CDP)
+
+- [x] Reproduced live with `node skin.mjs check`: `.markdown-file-link` (`start.bat`) reports 2.87. The element reads `--accent-accent-blue`, hardcoded as `#3f85ff` in solo-lite's light theme, and `#3f85ff` on SUBARU-Light's `#e8e9e7` measures 2.87, an exact match. VS Code's `textLink.foreground` (`#006AB1` light, 4.67:1) is not involved and stays native.
+- [x] Success side: native `icube.colorSuccess` `#00AA62` on `#e8e9e7` measures 2.49, matching the recorded 2.50.
+- [x] Fix in `inject.js`: light skins map `--accent-accent-blue` to 65% `accent` mixed into `text` (`#404f5a`, 6.94:1 on `background`, 7.81:1 on `surface`) inside the shared `tokenScope` (solo-lite redeclares it on `body`, so an `html`-only rule is overridden), and `--vscode-icube-colorSuccess` to 60% native green into `text` (`#0f764c`, 4.64:1 and 5.22:1). An explicit `success` override still wins.
+- [x] Live re-check after `apply` with the links in view: `skin=light match=full`, revision `63e669b2`, 0 light blocks and 0 low contrast; the link measures 6.94:1 on `#e8e9e7`.
+- [x] Dark mode is untouched: native `#26A57B` on `#23252a` is 4.97:1 and `#3794FF` is 5.00:1, so the new rules only apply to light skins.
+- [x] `node --test` and `node skin.mjs list` pass; all JavaScript files pass `node --check`.
+- [ ] IDE window: not covered live, because only the Agent target was open. The `textLink` token is left native there and already passes on light surfaces.
+
 ## Active material layout (2026-10-16, offline)
 
 - [x] `node --test`: 11 regression checks passed using temporary material fixtures and in-memory controller sessions; no TRAE process or CDP connection was used.
@@ -62,4 +72,4 @@ The user-provided cold-start output contains a successful apply and watcher star
 - [ ] Watcher exiting about 15 seconds after TRAE closes.
 - [ ] Double-clicking start.bat / stop.bat in File Explorer (so far verified via Start-Process).
 - [ ] Switching from TRAE's theme menu (so far simulated by rewriting settings.json); follow-system tracking Windows light/dark.
-- [ ] Light blocks and contrast for SUBARU-Light in light mode (`check`'s light-block detection only runs for dark skins). The latest check reported 2 low-contrast items: a markdown file link (2.87) and a `+6` diff count (2.50).
+- [ ] Light blocks and contrast for SUBARU-Light in light mode (`check`'s light-block detection only runs for dark skins). Before the link/success fix, `check` reported 2 low-contrast items: a markdown file link (2.87) and a `+6` diff count (2.50); the live re-check after the fix is still pending.

@@ -17,6 +17,10 @@ export function installTheme(theme, image, contract, revision) {
   const overlaySurface = `color-mix(in srgb, ${theme.surface} ${overlayOpacity}%, transparent)`;
   const fade = (color, pct) => `color-mix(in srgb,${color} ${pct}%,transparent)`;
   const tint = pct => fade(`color-mix(in srgb,${theme.text} ${pct}%,${theme.surface})`, theme.surfaceOpacity);
+  // TRAE's solo-lite light theme hardcodes link blue (#3f85ff) and success green (#00AA62) for its own white
+  // surfaces; on a light skin they drop to 2.87:1 and 2.49:1, so mix them toward the skin text.
+  const link = `color-mix(in srgb,${theme.accent} 65%,${theme.text})`;
+  const success = theme.success ?? `color-mix(in srgb, #00aa62 60%,${theme.text})`;
   // solo-lite redeclares hardcoded tokens on html[data-theme], body.vs.solo-lite and .solo-theme[data-theme]; override at each scope.
   const tokenScope = 'html[data-tws-mode], html[data-tws-mode] body, html[data-tws-mode] .solo-theme, html[data-tws-mode] [data-theme]';
   style.textContent = `
@@ -31,6 +35,7 @@ export function installTheme(theme, image, contract, revision) {
       --vscode-icube--border-border-neutral-l1:color-mix(in srgb,${theme.text} 10%,transparent)!important; --vscode-icube--border-border-neutral-l2:color-mix(in srgb,${theme.text} 16%,transparent)!important; --vscode-icube--border-border-neutral-l3:color-mix(in srgb,${theme.text} 22%,transparent)!important;
       --vscode-icube--icon-icon-disabled:color-mix(in srgb,${theme.muted} 58%,transparent)!important; --vscode-icube--icon-icon-onaccent:${theme.onAccent ?? theme.background}!important; --vscode-icube--icon-icon-secondary-hover:${theme.text}!important; --vscode-icube--text-text-brand:${theme.brandText ?? theme.accent}!important; --vscode-icube--text-text-disabled:color-mix(in srgb,${theme.muted} 58%,transparent)!important; --vscode-icube--text-text-onaccent:${theme.onAccent ?? theme.background}!important; --vscode-icube--text-text-tertiary:${theme.muted}!important;
       --vscode-icube-colorBgTr1:color-mix(in srgb,${theme.text} 7%,transparent)!important; --vscode-icube-colorBgTr2:color-mix(in srgb,${theme.text} 11%,transparent)!important; --vscode-icube-colorBlackText1:${theme.text}!important; --vscode-icube-colorHighlightText:${theme.brandText ?? theme.accent}!important; --vscode-icube-colorTextHighlight:${theme.accent}!important; --vscode-icube-emptyExplorerButtonTextColor:${theme.text}!important; --vscode-icube-agentReviewSummaryBg:${surface}!important; --vscode-icube-qualityBackgroundColor:${surface}!important; --vscode-icube-qualityForeground:${theme.text}!important; --icube-statusBar-background:${surface}!important; --icube-statusBar-color:${theme.text}!important;
+      ${theme.success || theme.mode === 'light' ? `--vscode-icube-colorSuccess:${success}!important;` : ''}
       --vscode-icube-box-shadow1:0 4px 12px #0005!important; --vscode-icube-box-shadow2:0 8px 24px #0007!important; --vscode-icube-box-shadow3:0 14px 38px #0009!important; --vscode-icube-elevation-100-tooltip:0 4px 12px #0006!important; --vscode-icube-elevation-200-menu-panel:0 8px 24px #0008!important; --vscode-icube-elevation-300-modal-panel:0 14px 38px #0009!important;
     }
     ${tokenScope} {
@@ -50,6 +55,7 @@ export function installTheme(theme, image, contract, revision) {
       --color-text-1:${theme.text}!important; --color-text-2:${theme.text}!important; --color-text-3:${theme.muted}!important; --color-text-4:${fade(theme.muted,58)}!important;
       --color-fill-1:${fade(theme.text,4)}!important; --color-fill-2:${fade(theme.text,7)}!important; --color-fill-3:${fade(theme.text,10)}!important; --color-fill-4:${fade(theme.text,14)}!important;
       --color-border-1:${fade(theme.text,8)}!important; --color-border-2:${fade(theme.text,12)}!important; --color-border-3:${fade(theme.text,18)}!important; --color-border-4:${fade(theme.text,24)}!important;
+      ${theme.mode === 'light' ? `--accent-accent-blue:${link}!important;` : ''}
     }
     html[data-tws-mode] body { background:${theme.background}!important; color:${theme.text}!important; isolation:isolate; }
     #trae-snow-ink-background { position:fixed; inset:0; pointer-events:none; z-index:-1; background-color:${theme.background}; }
@@ -83,7 +89,6 @@ export function installTheme(theme, image, contract, revision) {
       ${theme.gitIgnored ? `--vscode-gitDecoration-ignoredResourceForeground:${theme.gitIgnored}!important;` : ''}
       ${theme.gitModified ? `--vscode-gitDecoration-modifiedResourceForeground:${theme.gitModified}!important;` : ''}
       ${theme.gitDeleted ? `--vscode-gitDecoration-deletedResourceForeground:${theme.gitDeleted}!important;` : ''}
-      ${theme.success ? `--vscode-icube-colorSuccess:${theme.success}!important;` : ''}
       --vscode-icube-colorSnow:${tint(10)}!important; --vscode-icube-colorBlack:${theme.text}!important;
     }
     ${clear} { background-color:transparent!important; }

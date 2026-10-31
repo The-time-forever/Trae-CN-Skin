@@ -57,7 +57,7 @@ Optional `#rrggbb` overrides preserve existing mappings and native Git colors wh
 | `onAccent` | On-accent text and icons; check contrast against each background that uses it |
 | `invertBackground` | Inverted panel background and its hover and active variants |
 | `gitUntracked`, `gitIgnored`, `gitModified`, `gitDeleted` | IDE Git decoration colors |
-| `success` | IDE success color |
+| `success` | Success color in the IDE and the Agent chat; light skins mix the native green toward `text` when it is omitted |
 
 Keep at least 4.5:1 contrast between `text` and both `surface` and `background`.
 
@@ -87,7 +87,7 @@ Fix colors through the token mapping, not by adding per-component selectors from
 2. Search for that class in `resources/app/node_modules/@byted-icube/solo-lite/dist/*.css` under the TRAE install folder and note which `var(--…)` it reads.
 3. Add the missing token to the `tokenScope` rule.
 
-Tokens deliberately left alone: brand gradients, `--status-*` status colors, `--code-*` syntax colors, `--accent-accent-*`, and `--bg-bg-white`, which is white in both native themes.
+Tokens deliberately left alone: brand gradients, `--status-*` status colors, `--code-*` syntax colors, and `--bg-bg-white`, which is white in both native themes. `--accent-accent-*` stays native too, with one exception: `--accent-accent-blue` is what markdown file links read, and its light value (`#3f85ff`, 2.87:1 on SUBARU-Light) is mapped to the link color by light skins.
 
 ### Don'ts
 

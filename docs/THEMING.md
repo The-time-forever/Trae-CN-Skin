@@ -49,6 +49,16 @@ Unknown fields are dropped. Out-of-range values are rejected, never silently cor
 | `muted` | `#rrggbb` | Secondary text and placeholders |
 | `accent` | `#rrggbb` | Brand color: primary buttons, focus rings, selection |
 
+Optional `#rrggbb` overrides preserve existing mappings and native Git colors when omitted:
+
+| Field | Purpose |
+| --- | --- |
+| `brandText` | Brand and highlighted text |
+| `onAccent` | On-accent text and icons; check contrast against each background that uses it |
+| `invertBackground` | Inverted panel background and its hover and active variants |
+| `gitUntracked`, `gitIgnored`, `gitModified`, `gitDeleted` | IDE Git decoration colors |
+| `success` | IDE success color |
+
 Keep at least 4.5:1 contrast between `text` and both `surface` and `background`.
 
 ## Injection structure (read before editing src/core)

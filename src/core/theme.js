@@ -9,6 +9,7 @@ export const defaults = Object.freeze({
   surfaceOpacity: 68, blur: 12, radius: 14,
   accent: '#c8d7df', text: '#eceff1', muted: '#a5aab2', background: '#141518', surface: '#23252a'
 });
+const optionalColors = ['brandText', 'onAccent', 'invertBackground', 'gitUntracked', 'gitIgnored', 'gitModified', 'gitDeleted', 'success'];
 const ideFallback = { ideSurfaceOpacity: 'surfaceOpacity', ideBlur: 'blur' };
 const ranges = { focusX: [0,100], focusY: [0,100], imageWidth: [30,100], intensity: [0,100], taskIntensity: [0,100], surfaceOpacity: [0,100], blur: [0,40], radius: [0,24], ideSurfaceOpacity: [0,100], ideBlur: [0,40] };
 const imageTypes = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp' };
@@ -22,6 +23,12 @@ export function validateTheme(input, file) {
   if (!CONFIG.test(file)) throw new Error('Skin configs must be ASCII JSON file names inside themes/');
   const result = { id: file.slice(0, -5), mode: input.mode };
   for (const key of Object.keys(defaults)) result[key] = input[key] ?? defaults[key];
+  for (const key of optionalColors) {
+    if (Object.hasOwn(input, key)) {
+      if (typeof input[key] !== 'string' || !/^#[\da-f]{6}$/i.test(input[key])) throw new Error(`${key} must be #rrggbb`);
+      result[key] = input[key];
+    }
+  }
   // IDE panes default to the shared values, so skins without these fields look the same as before.
   for (const [key, base] of Object.entries(ideFallback)) result[key] = input[key] ?? result[base];
   if (typeof result.name !== 'string' || !result.name.trim() || result.name.length > 40) throw new Error('name must be 1-40 characters');

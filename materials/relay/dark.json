@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "name": "Relay Dark",
+  "mode": "dark",
+  "image": "background.png",
+  "focusX": 70, "focusY": 44, "imageWidth": 64,
+  "intensity": 40, "taskIntensity": 16,
+  "surfaceOpacity": 72, "blur": 16, "radius": 18,
+  "ideSurfaceOpacity": 44, "ideBlur": 6,
+  "accent": "#9db8ff", "accentAlt": "#f0a6d6",
+  "text": "#e9eefb", "muted": "#9dabc4",
+  "background": "#0b101d", "surface": "#151d2f"
+}

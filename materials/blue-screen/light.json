@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "name": "Blue Screen Light",
+  "mode": "light",
+  "image": "background.png",
+  "focusX": 50, "focusY": 46, "imageWidth": 58,
+  "intensity": 30, "taskIntensity": 9,
+  "surfaceOpacity": 84, "blur": 12, "radius": 14,
+  "ideSurfaceOpacity": 52, "ideBlur": 4,
+  "accent": "#145f86", "text": "#102a43", "muted": "#4f6b83",
+  "background": "#e6f1f8", "surface": "#f8fbfd"
+}

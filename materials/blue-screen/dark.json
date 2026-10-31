@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "name": "Blue Screen Dark",
+  "mode": "dark",
+  "image": "background.png",
+  "focusX": 50, "focusY": 46, "imageWidth": 58,
+  "intensity": 42, "taskIntensity": 12,
+  "surfaceOpacity": 72, "blur": 14, "radius": 14,
+  "ideSurfaceOpacity": 42, "ideBlur": 6,
+  "accent": "#79d9ff", "text": "#e8f3ff", "muted": "#9db4cc",
+  "background": "#0a1526", "surface": "#152740"
+}
